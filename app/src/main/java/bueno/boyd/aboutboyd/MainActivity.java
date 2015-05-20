@@ -1,11 +1,9 @@
 package bueno.boyd.aboutboyd;
 
-import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -15,7 +13,7 @@ import com.google.android.gms.location.LocationServices;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends BaseActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "bueno.boyd.aboutme";
 
     private GoogleApiClient mGoogleApiClient;
@@ -39,22 +37,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_quit) {
-            this.finish();
-            System.exit(0);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private synchronized void buildGoogleApiClient() {
