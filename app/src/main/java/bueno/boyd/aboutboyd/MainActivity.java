@@ -3,7 +3,6 @@ package bueno.boyd.aboutboyd;
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import com.google.android.gms.location.LocationServices;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "bueno.boyd.aboutme";
@@ -39,7 +37,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -51,8 +48,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_quit) {
+            this.finish();
+            System.exit(0);
             return true;
         }
 
