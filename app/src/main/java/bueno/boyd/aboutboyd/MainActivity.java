@@ -1,7 +1,9 @@
 package bueno.boyd.aboutboyd;
 
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
@@ -28,8 +30,14 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
 
         ButterKnife.inject(this);
 
-        buildGoogleApiClient();
-        mGoogleApiClient.connect();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean showLocation = prefs.getBoolean("checkbox_location_preference", true);
+        
+        if(showLocation) {
+            buildGoogleApiClient();
+            mGoogleApiClient.connect();
+        }
     }
 
 
