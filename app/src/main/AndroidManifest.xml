@@ -51,6 +51,18 @@
             android:label="@string/title_activity_location"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name=".QuoteActivity"
+            android:label="@string/title_activity_quote"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bueno.boyd.aboutboyd.MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuoteMessageActivity"
+            android:label="@string/title_activity_quote_message" >
+        </activity>
     </application>
 
 </manifest>

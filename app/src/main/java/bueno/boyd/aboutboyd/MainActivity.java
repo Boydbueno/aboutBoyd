@@ -21,10 +21,12 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private static final String TAG = "bueno.boyd.aboutme";
+    public final static String TAG = "bueno.boyd.aboutme";
 
     public final static String EXTRA_LATITUDE = "bueno.boyd.aboutme.LATITUDE";
     public final static String EXTRA_LONGITUDE = "bueno.boyd.aboutme.LONGITUDE";
+    public final static String EXTRA_QUOTE_AUTHOR = "bueno.boyd.aboutme.QUOTE_AUTHOR";
+    public final static String EXTRA_QUOTE_MESSAGE = "bueno.boyd.aboutme.QUOTE_MESSAGE";
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -60,6 +62,12 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
         Intent intent = new Intent(this, LocationActivity.class);
         intent.putExtra(EXTRA_LATITUDE, lat);
         intent.putExtra(EXTRA_LONGITUDE, lon);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.go_to_quotes)
+    public void goToQuotesActivity() {
+        Intent intent = new Intent(this, QuoteActivity.class);
         startActivity(intent);
     }
 
