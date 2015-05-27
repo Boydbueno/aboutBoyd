@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,6 +34,7 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
 
     @InjectView(R.id.latitude) TextView latitudeView;
     @InjectView(R.id.longitude) TextView longitudeView;
+    @InjectView(R.id.show_on_map) Button showOnMapBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
 
         boolean showLocation = prefs.getBoolean("checkbox_location_preference", true);
 
-        if(showLocation) {
+        if (showLocation) {
             buildGoogleApiClient();
             mGoogleApiClient.connect();
         }
@@ -89,6 +92,7 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
             lon = mLastLocation.getLongitude();
             latitudeView.setText("Latitude: " + String.valueOf(lat));
             longitudeView.setText("Longitude: " + String.valueOf(lon));
+            showOnMapBtn.setVisibility(View.VISIBLE);
         }
     }
 

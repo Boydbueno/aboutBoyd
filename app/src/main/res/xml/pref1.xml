@@ -11,14 +11,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preferences_header_audio">
-
-        <CheckBoxPreference
-            android:key="checkbox_audio_preference"
-            android:summary="@string/preferences_audio_on_summary"
-            android:title="@string/preferences_audio_on"
-            android:defaultValue="true" />
-
-    </PreferenceCategory>
-
 </PreferenceScreen>
