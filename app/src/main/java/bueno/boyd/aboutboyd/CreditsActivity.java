@@ -5,14 +5,13 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.MenuItem;
-
 
 public class CreditsActivity extends BaseActivity implements AudioManager.OnAudioFocusChangeListener {
     private static final String TAG = "bueno.boyd.aboutme";
 
-    private AudioManager audioManager;
     private MediaPlayer mediaPlayer;
 
     @Override
@@ -25,7 +24,7 @@ public class CreditsActivity extends BaseActivity implements AudioManager.OnAudi
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 
@@ -43,7 +42,7 @@ public class CreditsActivity extends BaseActivity implements AudioManager.OnAudi
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onMenuItemSelected(int featureId, @NonNull MenuItem item) {
         int itemId = item.getItemId();
         switch (itemId) {
             case android.R.id.home:

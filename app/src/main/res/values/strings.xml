@@ -19,4 +19,6 @@
     <string name="preferences_header_audio">Audio</string>
     <string name="preferences_audio_on_summary">Turn audio on or off</string>
     <string name="preferences_audio_on">Audio on</string>
+    <string name="show_location_button">Show location on map</string>
+    <string name="title_activity_location">Map</string>
 </resources>

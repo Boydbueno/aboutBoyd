@@ -1,5 +1,6 @@
 package bueno.boyd.aboutboyd;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.media.AudioManager;
@@ -15,11 +16,18 @@ import com.google.android.gms.location.LocationServices;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = "bueno.boyd.aboutme";
 
+    public final static String EXTRA_LATITUDE = "bueno.boyd.aboutme.LATITUDE";
+    public final static String EXTRA_LONGITUDE = "bueno.boyd.aboutme.LONGITUDE";
+
     private GoogleApiClient mGoogleApiClient;
+
+    private double lat;
+    private double lon;
 
 
     @InjectView(R.id.latitude) TextView latitudeView;
@@ -42,6 +50,14 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
             buildGoogleApiClient();
             mGoogleApiClient.connect();
         }
+    }
+
+    @OnClick(R.id.show_on_map)
+    public void goToLocationActivity() {
+        Intent intent = new Intent(this, LocationActivity.class);
+        intent.putExtra(EXTRA_LATITUDE, lat);
+        intent.putExtra(EXTRA_LONGITUDE, lon);
+        startActivity(intent);
     }
 
 
@@ -69,8 +85,10 @@ public class MainActivity extends BaseActivity implements GoogleApiClient.Connec
         final Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
-            latitudeView.setText("Latitude: " + String.valueOf(mLastLocation.getLatitude()));
-            longitudeView.setText("Longitude: " + String.valueOf(mLastLocation.getLongitude()));
+            lat = mLastLocation.getLatitude();
+            lon = mLastLocation.getLongitude();
+            latitudeView.setText("Latitude: " + String.valueOf(lat));
+            longitudeView.setText("Longitude: " + String.valueOf(lon));
         }
     }
 
