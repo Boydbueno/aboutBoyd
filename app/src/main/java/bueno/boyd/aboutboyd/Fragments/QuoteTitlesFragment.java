@@ -2,14 +2,30 @@ package bueno.boyd.aboutboyd.Fragments;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import bueno.boyd.aboutboyd.MainActivity;
 import bueno.boyd.aboutboyd.Quote;
 import bueno.boyd.aboutboyd.QuoteAdapter;
 import bueno.boyd.aboutboyd.R;
@@ -35,12 +51,42 @@ public class QuoteTitlesFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        QuoteAdapter adapter = new QuoteAdapter(getActivity().getBaseContext(), quotes);
-        quotes.add(new Quote("Boyd", "Roses are awesome"));
-        quotes.add(new Quote("Kimberley", "Roses are kawaii"));
-        quotes.add(new Quote("Tim", "Roses are stupid"));
+        final QuoteAdapter adapter = new QuoteAdapter(getActivity().getBaseContext(), quotes);
 
-        setListAdapter(adapter);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = "http://178.62.135.117/quotes";
+
+        JsonRequest stringRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                new JSONArray(),
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject quote = response.getJSONObject(i);
+                                quotes.add(new Quote(quote));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        setListAdapter(adapter);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Context context = getActivity().getBaseContext();
+                        String text = new String(error.networkResponse.data);
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                });
+
+        queue.add(stringRequest);
     }
 
     @Override
