@@ -31,5 +31,14 @@
     <string name="add_quote_message_label">Message:</string>
     <string name="add_quote_author_label">Author:</string>
     <string name="add_quote_add_button_label">Add</string>
+    <string name="credits_programmer_header">Programmer</string>
+    <string name="credits_programmer_name">Boyd Bueno de Mesquita</string>
+    <string name="credits_designer_header">Designer</string>
+    <string name="credits_designer_name">Boyd Bueno de Mesquita</string>
+    <string name="credits_community_manager_header">Community Manager</string>
+    <string name="credits_community_manager_name">Boyd Bueno de Mesquita</string>
+    <string name="credits_sound_designer_header">Sound designer</string>
+    <string name="credits_sound_designer_name">Boyd Bueno de Mesquita</string>
+    <string name="credits_footnote">[Imagine awesome scrolling effect]</string>
 
 </resources>
