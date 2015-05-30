@@ -70,6 +70,14 @@ public class AddQuoteActivity extends BaseActivity {
         String author = this.author.getText().toString();
         String message = this.message.getText().toString();
 
+        InternetConnectionDetector connectionDetector = new InternetConnectionDetector(this);
+
+        if (!connectionDetector.isNetworkAvailable()) {
+            Toast toast = Toast.makeText(this, "You'll need an internet connection to add a quote", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+
         if (author.isEmpty() || message.isEmpty()) {
             Context context = getApplicationContext();
             Toast toast = Toast.makeText(context, "Please fill in both fields", Toast.LENGTH_LONG);

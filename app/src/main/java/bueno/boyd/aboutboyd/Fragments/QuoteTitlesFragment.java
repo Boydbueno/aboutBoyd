@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import bueno.boyd.aboutboyd.InternetConnectionDetector;
 import bueno.boyd.aboutboyd.MainActivity;
 import bueno.boyd.aboutboyd.Quote;
 import bueno.boyd.aboutboyd.QuoteAdapter;
@@ -53,6 +54,18 @@ public class QuoteTitlesFragment extends ListFragment {
 
         final QuoteAdapter adapter = new QuoteAdapter(getActivity().getBaseContext(), quotes);
 
+        InternetConnectionDetector connectionDetector = new InternetConnectionDetector(getActivity());
+
+        if (!connectionDetector.isNetworkAvailable()) {
+            Toast toast = Toast.makeText(getActivity(), "You'll need an internet connection to view all quotes", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+
+        getAndAddQuotes(adapter);
+    }
+
+    private void getAndAddQuotes(final QuoteAdapter adapter) {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = "http://178.62.135.117/quotes";
 
@@ -107,7 +120,7 @@ public class QuoteTitlesFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        callback.onQuoteSelected(quotes, (int)id);
+        callback.onQuoteSelected(quotes, (int) id);
     }
 
 }
