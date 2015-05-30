@@ -24,9 +24,12 @@
     <string name="title_activity_location">Map</string>
     <string name="title_activity_quote">Quotes</string>
 
-    <string name="hello_world">Hello world!</string>
 
     <string name="quotes_button">What people say about me!</string>
     <string name="title_activity_quote_message">Quote</string>
+    <string name="title_activity_add_quote">Add a quote</string>
+    <string name="add_quote_message_label">Message:</string>
+    <string name="add_quote_author_label">Author:</string>
+    <string name="add_quote_add_button_label">Add</string>
 
 </resources>

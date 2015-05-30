@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,19 @@ public class QuoteActivity extends FragmentActivity implements QuoteTitlesFragme
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_quote, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_add_quote:
+                Intent intent = new Intent(this, AddQuoteActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

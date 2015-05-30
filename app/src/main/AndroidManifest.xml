@@ -64,6 +64,10 @@
             android:label="@string/title_activity_quote_message"
             android:parentActivityName=".QuoteActivity" >
         </activity>
+        <activity
+            android:name=".AddQuoteActivity"
+            android:label="@string/title_activity_add_quote" >
+        </activity>
     </application>
 
 </manifest>
