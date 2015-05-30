@@ -70,6 +70,13 @@ public class AddQuoteActivity extends BaseActivity {
         String author = this.author.getText().toString();
         String message = this.message.getText().toString();
 
+        if (author.isEmpty() || message.isEmpty()) {
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context, "Please fill in both fields", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject jsonObject = new JSONObject();
         try {
