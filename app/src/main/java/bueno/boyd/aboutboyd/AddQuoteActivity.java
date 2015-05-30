@@ -1,5 +1,6 @@
 package bueno.boyd.aboutboyd;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,6 +34,11 @@ public class AddQuoteActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_quote);
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         ButterKnife.inject(this);
     }
