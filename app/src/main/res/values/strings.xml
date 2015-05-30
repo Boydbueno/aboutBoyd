@@ -43,4 +43,7 @@
     <string name="credits_sound_designer_name">Boyd Bueno de Mesquita</string>
     <string name="credits_footnote">[Imagine awesome scrolling effect]</string>
 
+    <!-- About activity -->
+    <string name="about_header">An exclusive view of my house!</string>
+
 </resources>
