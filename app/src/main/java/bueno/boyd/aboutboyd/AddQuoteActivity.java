@@ -103,10 +103,10 @@ public class AddQuoteActivity extends BaseActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Context context = getApplicationContext();
-//                        String text = new String(error.networkResponse.data);
+                        String text = new String(error.networkResponse.data);
                         int duration = Toast.LENGTH_SHORT;
 
-                        Toast toast = Toast.makeText(context, "Something went wrong", duration);
+                        Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                     }
                 });
